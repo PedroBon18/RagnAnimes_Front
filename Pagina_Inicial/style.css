@@ -1,0 +1,128 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+  }
+  
+  header {
+    background-color: #111;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #f00;
+  }
+  
+  .search-box input {
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    width: 200px;
+  }
+  
+  .hamburger {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .menu {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  @media (max-width: 768px) {
+    .menu {
+      display: none;
+      flex-direction: column;
+      background-color: #222;
+      width: 100%;
+      margin-top: 10px;
+    }
+  
+    .menu.active {
+      display: flex;
+    }
+  
+    .hamburger {
+      display: block;
+    }
+  
+    .search-box {
+      width: 100%;
+      margin-top: 10px;
+    }
+  }
+  
+  /* Carrossel */
+  .carousel-section {
+    padding: 20px;
+  }
+  
+  .carousel-section h2 {
+    margin-bottom: 10px;
+    color: #f00;
+  }
+  
+  .carousel-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  
+  .carousel {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+  }
+  
+  .carousel img {
+    width: 180px;
+    height: 260px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+  
+  .carousel-btn {
+    background-color: rgba(255, 0, 0, 0.6);
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    padding: 8px 12px;
+    z-index: 10;
+    position: relative;
+  }
+  
+  .left {
+    margin-right: 5px;
+  }
+  
+  .right {
+    margin-left: 5px;
+  }

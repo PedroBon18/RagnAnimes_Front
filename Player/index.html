@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Player de Anime</title>
+
+  <style>
+    /* ---------- VARIÁVEIS ---------- */
+    :root {
+      --bg: #000000;              /* Fundo principal: preto */
+      --card: #1a1a1a;            /* Cartões: preto mais claro */
+      --muted: #999;              /* Texto secundário: cinza claro */
+      --accent: #ff0000;          /* Cor de destaque: vermelho */
+      --glass: rgba(255, 255, 255, 0.02); /* Efeito vidro */
+    }
+
+    /* ---------- RESET BÁSICO ---------- */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, sans-serif;
+      background: var(--bg);
+      color: #fff;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---------- CONTAINER CENTRAL ---------- */
+    .container {
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    /* ---------- TOPO COM TÍTULO E VOLTAR ---------- */
+    .topbar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .back-btn {
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      color: var(--muted);
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .back-btn:hover {
+      color: var(--accent);
+    }
+
+    .anime-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .anime-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .anime-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* ---------- PLAYER DE VÍDEO ---------- */
+    .player-wrap {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 14px;
+      border: 1px solid rgba(255, 0, 0, 0.2);
+    }
+
+    .video-card {
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #000;
+      max-height: 62vh;
+    }
+
+    /* ---------- DESCRIÇÃO DO ANIME ---------- */
+    .meta {
+      padding: 12px 6px;
+    }
+
+    .meta p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ---------- LISTA DE EPISÓDIOS (AGORA ABAIXO) ---------- */
+    .episodes {
+      background: transparent;
+      padding: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 20px;
+    }
+
+    .episode {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.08s;
+      border: 1px solid rgba(255, 0, 0, 0.15);
+      background: var(--card);
+    }
+
+    .episode:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .episode.active {
+      background: linear-gradient(90deg, rgba(255, 0, 0, 0.2), rgba(255, 0, 0, 0.1));
+      border: 1px solid var(--accent);
+    }
+
+    .ep-thumb {
+      width: 100px;
+      height: 56px;
+      border-radius: 6px;
+      flex-shrink: 0;
+      overflow: hidden;
+      background: #111;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+    }
+
+    .ep-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ep-title {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .ep-sub {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    /* ---------- RESPONSIVO ---------- */
+    @media (max-width: 768px) {
+      .anime-title {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- BARRA SUPERIOR COM TÍTULO E BOTÃO VOLTAR -->
+    <div class="topbar">
+      <button class="back-btn" id="backBtn" title="Voltar">
+        ← Voltar
+      </button>
+      <div class="anime-info">
+        <div class="anime-title" id="animeTitle">Nome do Anime - Exemplo</div>
+        <div class="anime-sub" id="animeSubtitle">Temporada 1 • Gênero</div>
+      </div>
+    </div>
+
+    <!-- ÁREA DO PLAYER -->
+    <div class="player-wrap">
+
+      <!-- PLAYER DE VÍDEO -->
+      <div class="video-card">
+        <video id="player" controls poster="">
+          <source id="playerSource" src="assets/ep1.mp4" type="video/mp4">
+          Seu navegador não suporta o elemento de vídeo.
+        </video>
+      </div>
+
+      <!-- DESCRIÇÃO DO ANIME -->
+      <div class="meta">
+        <p id="animeDesc">Descrição curta do anime. Aqui você pode colocar sinopse, estúdio, nota, etc.</p>
+      </div>
+
+      <!-- LISTA DE EPISÓDIOS -->
+      <h3 style="margin:6px 6px 4px 6px;">Episódios</h3>
+      <div class="episodes" id="episodesList">
+        <!-- Inserido via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- Dados de exemplo do anime ---
+    const anime = {
+      title: 'Kitsune Chronicles',
+      subtitle: 'Temporada 1 • Fantasia',
+      description: 'Acompanhe as aventuras de um jovem herói em um mundo de espíritos e tecnologia.',
+      poster: '',
+      episodes: [
+        { id: 1, title: 'Episódio 1 — O Despertar', time: '24:12', src: 'assets/ep1.mp4', thumb: '' },
+        { id: 2, title: 'Episódio 2 — Encontro', time: '23:45', src: 'assets/ep2.mp4', thumb: '' },
+        { id: 3, title: 'Episódio 3 — A Floresta', time: '25:01', src: 'assets/ep3.mp4', thumb: '' },
+        { id: 4, title: 'Episódio 4 — Revelações', time: '22:50', src: 'assets/ep4.mp4', thumb: '' },
+        { id: 5, title: 'Episódio 5 — Batalha', time: '26:10', src: 'assets/ep5.mp4', thumb: '' }
+      ]
+    };
+
+    // Seleciona elementos do HTML para atualizar conteúdo
+    const backBtn = document.getElementById('backBtn');
+    const episodesList = document.getElementById('episodesList');
+    const player = document.getElementById('player');
+    const playerSource = document.getElementById('playerSource');
+    const animeTitle = document.getElementById('animeTitle');
+    const animeSubtitle = document.getElementById('animeSubtitle');
+    const animeDesc = document.getElementById('animeDesc');
+
+    // Preenche título, subtítulo e descrição com dados do objeto
+    animeTitle.textContent = anime.title;
+    animeSubtitle.textContent = anime.subtitle;
+    animeDesc.textContent = anime.description;
+
+    // Cria a lista de episódios dinamicamente
+    function renderEpisodes(list) {
+      episodesList.innerHTML = '';
+      list.forEach(ep => {
+        const epEl = document.createElement('button');
+        epEl.className = 'episode';
+        epEl.setAttribute('data-src', ep.src);
+        epEl.setAttribute('data-id', ep.id);
+
+        // Cria o conteúdo visual do episódio
+        epEl.innerHTML = `
+          <div class="ep-thumb">#${ep.id}</div>
+          <div class="ep-info">
+            <div class="ep-title">${ep.title}</div>
+            <div class="ep-sub">${ep.time}</div>
+          </div>
+        `;
+
+        // Evento de clique no episódio
+        epEl.addEventListener('click', () => selectEpisode(ep));
+
+        episodesList.appendChild(epEl);
+      });
+    }
+
+    // Função que troca o vídeo e destaca o episódio atual
+    function selectEpisode(ep) {
+      player.pause(); // para o vídeo atual
+      playerSource.src = ep.src; // muda a fonte
+      player.load(); // carrega novo vídeo
+      player.play().catch(() => {}); // tenta reproduzir automaticamente
+
+      // Atualiza a aparência do episódio selecionado
+      Array.from(document.querySelectorAll('.episode')).forEach(btn => {
+        btn.classList.toggle('active', Number(btn.dataset.id) === ep.id);
+      });
+    }
+
+    // Botão de voltar (navega para a página anterior ou volta ao início)
+    backBtn.addEventListener('click', () => {
+      if (window.history.length > 1) window.history.back();
+      else window.location.href = '/';
+    });
+
+    // Inicializa a lista de episódios e seleciona o primeiro automaticamente
+    renderEpisodes(anime.episodes);
+    if (anime.episodes.length) selectEpisode(anime.episodes[0]);
+  </script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RagnAnimes</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo">RagnAnimes</div>
+
+      <div class="hamburger" id="hamburger">&#9776;</div>
+
+      <ul class="menu" id="menu">
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Categorias</a></li>
+        <li><a href="#">Conta</a></li>
+        <li><a href="#">Favoritos</a></li>
+      </ul>
+
+      <div class="search-box">
+        <input type="text" placeholder="Buscar animes..." />
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Reutilizando o mesmo bloco para cada categoria -->
+    <section class="carousel-section">
+      <h2>Ação</h2>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn left" onclick="scrollCarousel(this, -1)">&#10094;</button>
+        <div class="carousel">
+          <img src="/img/acao/MHA.jpg" alt="Boku no Hero" />
+          <img src="/img/acao/sololeviling.jpg" alt="Ação 2" />
+          <img src="/img/acao/jujutusu_kaisen_2.jpg" alt="Ação 3" />
+          <img src="/img/acao/yuyu.jpg" alt="Ação 4" />
+          <img src="/img/acao/naruto.jpg" alt="Ação 5" />
+          <img src="/img/acao/naruto_shipuuden.jpg" alt="Ação 6" />
+          <img src="/img/acao/black_clover.jpg" alt="Ação 7" />
+          <img src="/img/acao/MHA_Vigilante.jpg" alt="Ação 8" />
+          <img src="/img/acao/kimetsu.jpg" alt="Ação 9" />
+          <img src="/img/acao/DanDaDan.jpg" alt="Ação 10" />
+          <img src="/img/acao/chainsaw.jpg" alt="Ação 11" />
+          <img src="/img/acao/mashle.jpg" alt="Ação 12" />
+          <img src="/img/acao/tokyo_revengers.jpg" alt="Ação 13" />
+          <img src="/img/acao/FMAB.jpg" alt="Ação 14" />
+          <img src="/img/acao/DBZ.jpg" alt="Ação 15" />
+
+
+        </div>
+        <button class="carousel-btn right" onclick="scrollCarousel(this, 1)">&#10095;</button>
+      </div>
+    </section>
+
+    <section class="carousel-section">
+      <h2>Aventura</h2>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn left" onclick="scrollCarousel(this, -1)">&#10094;</button>
+        <div class="carousel">
+          <img src="/img/aventura/akame.jpg" />
+          <img src="/img/aventura/Jojo.jpg" />
+          <img src="/img/aventura/BoG.jpg" />
+          <img src="/img/aventura/Danmachi.jpg" />
+          <img src="/img/aventura/Katainaka_no_Ossan,_Kensei ni_Naru.jpg" />
+          <img src="/img/aventura/Jigokuraku.jpg" />
+          <img src="/img/aventura/bakugan.jpg" />
+          <img src="/img/aventura/Dr.Stone.jpg" />
+          <img src="/img/aventura/loser_rangers.jpg" />
+          <img src="/img/aventura/pokemon.jpg" />
+          <img src="/img/aventura/Shingeki.jpg" />
+          <img src="/img/aventura/Tougen_Anki.jpg" />
+          <img src="/img/aventura/Wistoria.jpg" />
+          <img src="/img/aventura/sakamoto.jpg" />
+          <img src="/img/aventura/Zom_100.jpg" />
+        </div>
+        <button class="carousel-btn right" onclick="scrollCarousel(this, 1)">&#10095;</button>
+      </div>
+    </section>
+
+    <section class="carousel-section">
+      <h2>Fantasia</h2>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn left" onclick="scrollCarousel(this, -1)">&#10094;</button>
+        <div class="carousel">
+          <img src="/img/fantasia/Akashic_Records.jpg" />
+          <img src="/img/fantasia/Death_Note.jpg" />
+          <img src="/img/fantasia/fma.jpg" />
+          <img src="/img/fantasia/No_Game_No_Life_Zero.jpg" />
+          <img src="/img/fantasia/Mato.jpg" />
+          <img src="/img/fantasia/Gachakuta.jpg" />
+          <img src="/img/fantasia/Frieren.jpg" />
+          <img src="/img/fantasia/dungeon_meshi.jpg" />
+          <img src="/img/fantasia/Tokyo_Gohul.jpg" />
+          <img src="/img/fantasia/Sentouin,_Haken shimasu!.jpg" />
+          <img src="/img/fantasia/hikaru.jpg" />
+          <img src="/img/fantasia/Hyouken_no_Majutsushi_ga_Sekai_wo_Suberu.jpg" />
+          <img src="/img/fantasia/nanatsu.jpg" />
+          <img src="/img/fantasia/Nier.jpg" />
+          <img src="/img/fantasia/healer.jpg" />
+        </div>
+        <button class="carousel-btn right" onclick="scrollCarousel(this, 1)">&#10095;</button>
+      </div>
+    </section>
+
+    <section class="carousel-section">
+      <h2>Isekai</h2>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn left" onclick="scrollCarousel(this, -1)">&#10094;</button>
+        <div class="carousel">
+          <img src="https://via.placeholder.com/180x260?text=Isekai+1" />
+          <img src="https://via.placeholder.com/180x260?text=Isekai+2" />
+          <img src="https://via.placeholder.com/180x260?text=Isekai+3" />
+          <img src="https://via.placeholder.com/180x260?text=Isekai+4" />
+          <img src="https://via.placeholder.com/180x260?text=Isekai+5" />
+          <img src="https://via.placeholder.com/180x260?text=Isekai+5" />
+          <img src="https://via.placeholder.com/180x260?text=Isekai+5" />
+          <img src="https://via.placeholder.com/180x260?text=Isekai+5" />
+          <img src="https://via.placeholder.com/180x260?text=Isekai+5" />
+          <img src="https://via.placeholder.com/180x260?text=Isekai+5" />
+          <img src="https://via.placeholder.com/180x260?text=Isekai+5" />
+          <img src="https://via.placeholder.com/180x260?text=Isekai+5" />
+          <img src="https://via.placeholder.com/180x260?text=Isekai+5" />
+          <img src="https://via.placeholder.com/180x260?text=Isekai+5" />
+          <img src="https://via.placeholder.com/180x260?text=Isekai+5" />
+        </div>
+        <button class="carousel-btn right" onclick="scrollCarousel(this, 1)">&#10095;</button>
+      </div>
+    </section>
+
+    <section class="carousel-section">
+      <h2>Romance</h2>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn left" onclick="scrollCarousel(this, -1)">&#10094;</button>
+        <div class="carousel">
+          <img src="https://via.placeholder.com/180x260?text=Shounen+1" />
+          <img src="https://via.placeholder.com/180x260?text=Shounen+2" />
+          <img src="https://via.placeholder.com/180x260?text=Shounen+3" />
+          <img src="https://via.placeholder.com/180x260?text=Shounen+4" />
+          <img src="https://via.placeholder.com/180x260?text=Shounen+5" />
+          <img src="https://via.placeholder.com/180x260?text=Shounen+5" />
+          <img src="https://via.placeholder.com/180x260?text=Shounen+5" />
+          <img src="https://via.placeholder.com/180x260?text=Shounen+5" />
+          <img src="https://via.placeholder.com/180x260?text=Shounen+5" />
+          <img src="https://via.placeholder.com/180x260?text=Shounen+5" />
+          <img src="https://via.placeholder.com/180x260?text=Shounen+5" />
+          <img src="https://via.placeholder.com/180x260?text=Shounen+5" />
+          <img src="https://via.placeholder.com/180x260?text=Shounen+5" />
+          <img src="https://via.placeholder.com/180x260?text=Shounen+5" />
+          <img src="https://via.placeholder.com/180x260?text=Shounen+5" />
+        </div>
+        <button class="carousel-btn right" onclick="scrollCarousel(this, 1)">&#10095;</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
