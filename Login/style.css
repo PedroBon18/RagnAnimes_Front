@@ -6,7 +6,7 @@
   
   body {
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(120deg, #2F2F2F, #D72638);
+    background: linear-gradient(120deg, #222121);
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -16,7 +16,7 @@
   
   /* Caixa de login */
   .login {
-    background-color: #1c1c1c;
+    background-color: #2F2F2F;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
