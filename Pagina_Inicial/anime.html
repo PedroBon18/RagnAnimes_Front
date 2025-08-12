@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalhes do Anime</title>
+  <link rel="stylesheet" href="detalhes.css">
+</head>
+<body>
+  <header>
+    <h1>RagnAnimes</h1>
+  </header>
+
+  <div class="container">
+    <img id="imagem" src="" alt="">
+    <div class="info">
+      <h2 id="titulo"></h2>
+      <p id="descricao"></p>
+    </div>
+  </div>
+
+  <script>
+    // Lista simulada de animes (você pode puxar de um JSON ou API)
+    const animes = [
+        { id: 1, nome: "Boku no Hero", descricao: "O jovem Izuku nasceu sem poderes, mas seu sonho sempre foi se tornar um grande herói. Para isso, ele entra na escola de super-heróis e se esforça para ser o campeão número um do mundo.", imagem: "/img/acao/MHA.jpg" },
+        { id: 2, nome: "Solo Leviling", descricao: "A história se passa em um mundo onde portais para outras dimensões se abrem, liberando monstros que ameaçam a humanidade. Os caçadores, pessoas com habilidades mágicas, são a única defesa contra essas criaturas. Sung Jinwoo, inicialmente conhecido como o caçador mais fraco de todos, recebe uma rara oportunidade de nível através de um programa misterioso, o Sistema, transformando-se no único caçador com essa habilidade.", imagem: "/img/acao/sololeviling.jpg" },
+        { id: 3, nome: "Jujutusu Kaisen", descricao: "O jovem Yuji deve comer os 19 dedos de uma maldição para que ela não se propague.", imagem: "/img/acao/jujutusu_kaisen_2.jpg" },
+        { id: 4, nome: "Yu Yu Hakusho", descricao: "Yusuke Urameshi, um adolescente problemático, morre ao salvar uma criança de um atropelamento. Ele é escolhido para se tornar um detetive espiritual pelo mundo espiritual, com a missão de investigar casos paranormais no mundo humano, muitas vezes envolvendo demônios. Acompanhado por seus amigos Kuwabara, Kurama e Hiei, ele enfrenta desafios crescentes em batalhas épicas.", imagem: "/img/acao/yuyu.jpg" },
+        { id: 5, nome: "Naruto", descricao: "Um jovem ninja com o sonho de se tornar Hokage, o líder e protetor de sua vila, enfrentando desafios e crescendo em força e amizade.", imagem: "/img/acao/naruto.jpg" },
+        { id: 6, nome: "Naruto Shippuden", descricao: "Depois de um treinamento rigoroso, Naruto retorna à vila para proteger seus amigos e enfrentar ameaças maiores, com novos aliados e inimigos poderosos.", imagem:"/img/acao/naruto_shipuuden.jpg" },
+        { id: 7, nome: "Black Clover", descricao: "Dois órfãos, Asta e Yuno, buscam se tornar o Rei Mago em um mundo onde a magia é tudo. Enquanto Yuno possui grande talento mágico, Asta compensa com força física e determinação.", imagem:"/img/acao/black_clover.jpg" },
+        { id: 8, nome: "Boku no Hero Vigilantes", descricao: "Koichi Haimawari desistiu do sonho de ser herói, mas vive em uma sociedade onde 80% das pessoas possuem poderes chamados Individualidades. Ele acaba envolvido em ações heroicas inesperadas.", imagem:"/img/acao/MHA_Vigilante.jpg" },
+        { id: 9, nome: "Demon Slayer", descricao: "Tanjiro busca uma cura para sua irmã, amaldiçoada após sua família ser massacrada por demônios. Ele se torna um caçador de demônios e enfrenta desafios mortais.", imagem:"/img/acao/kimetsu.jpg" },
+        { id: 10, nome: "Dan Da Dan", descricao: "Momo Ayase acredita em fantasmas, enquanto Ken Takakura é obcecado por alienígenas. Juntos, eles se envolvem em eventos sobrenaturais cômicos e emocionantes.", imagem:"/img/acao/DanDaDan.jpg" },
+        { id: 11, nome: "Chainsaw Man", descricao: "Denji herda a habilidade de se transformar em Chainsaw Man após fazer um pacto com seu cão demônio Pochita, lutando contra demônios enquanto paga dívidas perigosas.", imagem:"/img/acao/chainsaw.jpg" },
+        { id: 12, nome: "Mashle: Magic and Muscles", descricao: "Em um mundo onde a magia é tudo, Mash compensa sua ausência de poderes com uma força física impressionante, enfrentando desafios para se tornar um mago respeitado.", imagem:"/img/acao/mashle.jpg" },
+        { id: 13, nome: "Tokyo Revengers", descricao: "Takemichi volta no tempo para salvar sua ex-namorada e impedir a tragédia causada pela gangue Tokyo Manji, mudando o passado e o futuro.", imagem:"/img/acao/tokyo_revengers.jpg" },
+        { id: 14, nome: "Fullmetal Alchemist: Brotherhood", descricao: "Os irmãos Elric buscam a pedra filosofal para recuperar seus corpos após um experimento alquímico falho, enfrentando conspirações e inimigos formidáveis.", imagem:"/img/acao/FMAB.jpg" },
+        { id: 15, nome: "Dragon Ball Z", descricao: "Goku e seus amigos defendem a Terra de ameaças alienígenas e guerreiros poderosos, com lutas épicas e transformações lendárias.", imagem:"/img/acao/DBZ.jpg" },
+    ];
+    
+    // Captura o parâmetro 'id' da URL
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'));
+    
+    // Procura o anime pelo ID
+    const anime = animes.find(a => a.id === id);
+    
+    // Mostra na tela
+    if (anime) {
+        document.body.innerHTML = `
+            <h1>${anime.nome}</h1>
+            <img src="${anime.imagem}" alt="${anime.nome}" style="max-width:300px;">
+            <p>${anime.descricao}</p>
+            <a href="index.html">Voltar</a>
+        `;
+    } else {
+        document.body.innerHTML = "<h1>Anime não encontrado</h1>";
+    }
+    </script>
+</body>
+</html>

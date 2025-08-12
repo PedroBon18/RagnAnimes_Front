@@ -27,7 +27,7 @@
   /* Título */
   .login h3 {
     margin-bottom: 20px;
-    color: #FFD166;
+    color: #ff0201;
   }
   
   /* Campos de entrada */
@@ -45,7 +45,7 @@
   button {
     width: 100%;
     padding: 10px;
-    background-color: #F46036;
+    background-color: #f00000;
     border: none;
     border-radius: 6px;
     color: white;
@@ -65,7 +65,7 @@
   }
   
   .links a {
-    color: #FFD166;
+    color: #ff0201;
     text-decoration: none;
     display: block;
     margin-top: 8px;

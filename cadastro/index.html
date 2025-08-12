@@ -6,19 +6,34 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-      <div class="form-box">
-        <h2>Cadastro</h2>
-        <form>
-          <input type="text" placeholder="Nome" required>
-          <input type="email" placeholder="E-mail" required>
-          <input type="text" placeholder="Data de nascimento" required>
-          <input type="text" placeholder="Senha" required>
-          <input type="text" placeholder="Confirmar senha" required>
-          <button type="submit">Cadastrar</button>
-        </form>
-        <div class="links">
-          <a href="#">Já tenho uma conta</a>
-        </div>
+  <div class="form-box">
+    <h2>Cadastro</h2>
+    <form>
+      <input type="text" placeholder="Nome" required>
+      <input type="email" placeholder="E-mail" required>
+      <input id="dataNascimento" type="text" placeholder="Data de nascimento" maxlength="10" required>
+      <input type="password" placeholder="Senha" required>
+      <input type="password" placeholder="Confirmar senha" required>
+      <button type="submit">Cadastrar</button>
+    </form>
+    <div class="links">
+      <a href="#">Já tenho uma conta</a>
+    </div>
   </div>
+
+  <script>
+    const dataInput = document.getElementById('dataNascimento');
+
+    dataInput.addEventListener('input', function (e) {
+      let valor = e.target.value.replace(/\D/g, ""); // Remove tudo que não for número
+      if (valor.length > 2) {
+        valor = valor.slice(0, 2) + "/" + valor.slice(2);
+      }
+      if (valor.length > 5) {
+        valor = valor.slice(0, 5) + "/" + valor.slice(5, 9);
+      }
+      e.target.value = valor;
+    });
+  </script>
 </body>
 </html>
