@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Detalhes do Anime</title>
+  <!-- Ícone da aba do navegador -->
+  <link rel="shortcut icon" href="/img/favicon/favicon.png" type="image/x-icon">
+  <!-- Link para o arquivo CSS que estiliza esta página -->
+  <link rel="stylesheet" href="detalhes.css" />
+</head>
+<body>
+  <header>
+    <!-- Logo do site -->
+    <h1><img src="/img/logo/logo.png" alt="logo"></h1>
+    <!-- Link de voltar para a página principal -->
+    <a href="index.html" class="back-link">← Voltar</a>
+  </header>
+
+  <main class="container">
+    <div class="anime-details"> 
+      <img id="imagem" src="" alt="Imagem do anime" />  <!-- Imagem do anime será carregada aqui. O "src" será atualizado dinamicamente pelo JavaScript usando o campo "imagem" do objeto do anime. -->
+      <div class="info"> 
+        <h2 id="titulo"></h2><!-- O título do anime será inserido aqui via JavaScript usando o campo "nome" do objeto do anime. -->
+        <p id="descricao"></p><!-- A descrição do anime será inserida aqui via JavaScript usando o campo "descricao" do objeto do anime. -->
+      </div>
+    </div>
+
+    <section id="trailer-section" class="trailer-section" style="display:none;">
+  <h2>Trailer</h2>
+  <!--
+    O <iframe> abaixo será usado para exibir o trailer do anime.
+    Inicialmente, o "src" está vazio.
+    Quando o usuário clicar em um anime, o JavaScript pega a URL
+    do campo "trailer" do objeto do anime e insere aqui.
+    Isso permite carregar o vídeo do YouTube diretamente na página.
+  -->
+  <iframe
+    id="trailer"
+    width="560"
+    height="315"
+    src=""
+    title="Trailer do anime"
+    frameborder="0"
+    allowfullscreen
+  ></iframe>
+</section>
+
+
+    <section id="error-section" style="display:none;">
+      <h2>Anime não encontrado</h2>
+      <p>O anime que você está procurando não existe ou foi removido.</p>
+    </section>
+  </main>
+
+  <script> //JavaScript
+    const animes = [
+      {
+        id: 1,// Identificador único do anime. Serve para diferenciar cada anime na lista.
+        nome: "Boku no Hero Academia (My Hero Academia)", // Nome que aparece no site
+        descricao: "Em um mundo onde quase todos possuem superpoderes conhecidos como 'Individualidades', Izuku Midoriya nasceu sem nenhum. Mesmo assim, seu maior sonho é se tornar um herói. Sua vida muda drasticamente quando ele encontra seu ídolo, All Might, que lhe concede a chance de realizar seu sonho ao herdar sua poderosa Individualidade.",
+        imagem: "/img/acao/MHA.jpg", // Caminho da capa usada no carrossel
+        trailer: "https://www.youtube.com/embed/D5fYOnwYkj4?enablejsapi=1&wmode=opaque&autoplay=1",
+
+           // Cada anime possui um campo "trailer" que armazena o link de incorporação do YouTube.
+          // Esse link é usado para exibir o trailer diretamente no site via <iframe>.
+         // Assim, o código não baixa o vídeo, apenas "importa" o player do YouTube.
+        // URL do trailer no YouTube, no formato "embed"
+       // Esse link é usado para carregar o vídeo dentro de um <iframe> no site,
+      // permitindo que o player do YouTube rode diretamente na página.
+      
+      },
+      {
+        id: 2,
+        nome: "Solo Leveling",
+        descricao: "Conhecido como 'O Caçador Mais Fraco de Toda a Humanidade', Sung Jin-Woo luta para sobreviver em um mundo infestado por monstros. Após um massacre em uma dungeon que quase lhe custa a vida, ele desperta com uma habilidade única: um sistema que o permite evoluir sem limites. Agora, ele inicia uma jornada para descobrir os segredos por trás de seus novos poderes.",
+        imagem: "/img/acao/sololeviling.jpg",
+        trailer: "https://www.youtube.com/embed/YvGSK8mIlt8",
+      },
+      {
+        id: 3,
+        nome: "Jujutsu Kaisen",
+        descricao: "Yuji Itadori é um estudante com uma força física incomum. Para salvar seus amigos de maldições, ele engole um objeto amaldiçoado e se torna o hospedeiro de Sukuna, o Rei das Maldições. Condenado à morte, Yuji se junta à Escola de Feiticeiros Jujutsu para encontrar todos os dedos de Sukuna e exorcizá-lo de uma vez por todas.",
+        imagem: "/img/acao/jujutusu_kaisen_2.jpg",
+        trailer: "https://www.youtube.com/embed/4A_X-Dvl0ws?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+        id: 4,
+        nome: "Yu Yu Hakusho",
+        descricao: "Yusuke Urameshi, um delinquente juvenil, morre em um ato atípico de heroísmo. O Mundo Espiritual lhe oferece uma segunda chance na vida, mas com uma condição: ele deve se tornar um Detetive Sobrenatural, investigando casos envolvendo demônios e aparições na Terra.",
+        imagem: "/img/acao/yuyu.jpg",
+        trailer: "https://www.youtube.com/embed/ZJEv4d2TYQ4?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+        id: 5,
+        nome: "Naruto",
+        descricao: "Naruto Uzumaki é um jovem ninja rejeitado por sua vila por ter a Raposa de Nove Caudas selada dentro de si. Determinado a provar seu valor, ele sonha em se tornar o Hokage, o líder e ninja mais forte da aldeia, vivendo inúmeras aventuras ao lado de seus amigos.",
+        imagem: "/img/acao/naruto.jpg",
+        trailer: "https://www.youtube.com/embed/de4PTw0t6sY",
+      },
+      {
+        id: 6,
+        nome: "Naruto Shippuden",
+        descricao: "Dois anos e meio após sua jornada de treinamento, Naruto Uzumaki retorna à Vila da Folha mais forte e determinado. Ele reencontra seus amigos e enfrenta a Akatsuki, uma organização criminosa que busca capturar as Bestas de Caudas, enquanto continua sua busca para salvar seu amigo Sasuke Uchiha da escuridão.",
+        imagem: "/img/acao/naruto_shipuuden.jpg",
+        trailer: "https://www.youtube.com/embed/w4Gth_d1rSM",
+      },
+      {
+        id: 7,
+        nome: "Black Clover",
+        descricao: "Em um mundo onde magia é tudo, Asta nasceu sem nenhum poder mágico. Determinado a se tornar o Rei Mago, ele treina seu corpo incansavelmente. Ao lado de seu rival e amigo de infância, Yuno, que é um prodígio da magia, Asta embarca em uma jornada épica com seu grimório de cinco folhas e uma espada que anula magia.",
+        imagem: "/img/acao/black_clover.jpg",
+        trailer: "https://www.youtube.com/embed/vUjAxk1qYzQ?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+        id: 8,
+        nome: "My Hero Academia: Vigilantes",
+        descricao: "Nem todos que usam seus poderes para o bem são heróis licenciados. Esta história segue Koichi Haimawari, um jovem que usa sua modesta Individualidade para fazer boas ações e acaba se envolvendo no perigoso mundo dos 'Vigilantes', heróis ilegais que lutam contra o crime nas sombras da lei.",
+        imagem: "/img/acao/MHA_Vigilante.jpg",
+        trailer: "https://www.youtube.com/embed/tU092KyDmco",
+      },
+      {
+        id: 9,
+        nome: "Demon Slayer: Kimetsu no Yaiba",
+        descricao: "A vida de Tanjiro Kamado muda para sempre quando sua família é massacrada por um demônio, e sua irmã mais nova, Nezuko, é transformada em um. Para encontrar uma cura para sua irmã e vingar sua família, Tanjiro se torna um Caçador de Demônios, iniciando uma perigosa jornada.",
+        imagem: "/img/acao/kimetsu.jpg",
+        trailer: "https://www.youtube.com/embed/pmanD_s7G3U",
+      },
+      {
+        id: 10,
+        nome: "Dandadan",
+        descricao: "Momo Ayase acredita em fantasmas, mas não em alienígenas. Seu amigo, Ken Takakura ('Okarun'), acredita em alienígenas, mas não em fantasmas. Para provar quem está certo, eles visitam lugares assombrados e acabam se envolvendo em uma batalha bizarra e cômica contra forças sobrenaturais de todos os tipos.",
+        imagem: "/img/acao/DanDaDan.jpg",
+        trailer: "https://www.youtube.com/embed/0XJxfbN36Uw",
+      },
+      {
+        id: 11,
+        nome: "Chainsaw Man",
+        descricao: "Denji é um jovem que vive na miséria, caçando demônios para a Yakuza para pagar a dívida de seu pai. Após ser traído e morto, ele faz um pacto com seu demônio de estimação, Pochita, e renasce como o Chainsaw Man, um híbrido de humano e demônio com motosserras no lugar da cabeça e dos braços.",
+        imagem: "/img/acao/chainsaw.jpg",
+        trailer: "https://www.youtube.com/embed/v4yLeNt-kCU",
+      },
+      {
+        id: 12,
+        nome: "Mashle: Magic and Muscles",
+        descricao: "Em um mundo onde a magia determina o status social, Mash Burnedead nasceu sem um pingo de poder mágico. Para viver em paz com sua família, ele se matricula na prestigiada Academia de Magia Easton, determinado a se tornar um Visionário Divino usando apenas sua força física descomunal.",
+        imagem: "/img/acao/mashle.jpg",
+        trailer: "https://www.youtube.com/embed/Hbz4shbCPCA?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+        id: 13,
+        nome: "Tokyo Revengers",
+        descricao: "Takemichi Hanagaki, um jovem de 26 anos sem perspectivas, descobre que sua ex-namorada do fundamental foi morta por uma gangue. Após um acidente, ele volta 12 anos no tempo e decide usar essa habilidade para se infiltrar na gangue e salvar a todos que ama, mudando o futuro.",
+        imagem: "/img/acao/tokyo_revengers.jpg",
+        trailer: "https://www.youtube.com/embed/r9M34VgTfzY?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+        id: 14,
+        nome: "Fullmetal Alchemist: Brotherhood",
+        descricao: "Após uma tentativa proibida de alquimia para reviver sua mãe, os irmãos Edward e Alphonse Elric pagam um preço terrível. Para restaurar seus corpos, eles partem em busca da lendária Pedra Filosofal, desvendando uma conspiração militar que ameaça todo o país.",
+        imagem: "/img/acao/FMAB.jpg",
+        trailer: "https://www.youtube.com/embed/1ac3_YdSSy0?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+        id: 15,
+        nome: "Dragon Ball Z",
+        descricao: "Cinco anos após os eventos de Dragon Ball, Goku descobre suas origens Saiyajins e agora, junto aos Guerreiros Z, deve defender a Terra de ameaças cada vez mais poderosas, incluindo conquistadores intergalácticos, androides mortais e seres mágicos.",
+        imagem: "/img/acao/DBZ.jpg",
+        trailer: "https://www.youtube.com/embed/8M-F_-8VbUk",
+      },
+      {
+        id: 16,
+        nome: "Akame ga Kill!",
+        descricao: "O jovem espadachim Tatsumi viaja para a Capital em busca de dinheiro para sua aldeia, mas descobre um mundo de corrupção. Ele se junta à Night Raid, um grupo de assassinos que luta para derrubar o governo tirânico, em uma guerra brutal onde ninguém está a salvo.",
+        imagem: "/img/aventura/akame.jpg",
+        trailer: "https://www.youtube.com/embed/HOB4GZ1S1Wo?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+        id: 17,
+        nome: "JoJo's Bizarre Adventure",
+        descricao: "A saga épica da família Joestar, cujos membros estão destinados a enfrentar forças sobrenaturais ao longo de gerações. Cada parte da história segue um descendente diferente, cada um com o apelido 'JoJo', em suas aventuras bizarras e cheias de estilo.",
+        imagem: "/img/aventura/Jojo.jpg",
+        trailer: "https://www.youtube.com/embed/PGVSViecHWE?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+        id: 18,
+        nome: "Boushoku no Berserk (Berserk of Gluttony)",
+        descricao: "Fate Graphite é um guarda amaldiçoado com a habilidade 'Gula', que o deixa sempre faminto. Sua vida muda quando ele mata um ladrão e descobre que pode devorar as habilidades e estatísticas de suas vítimas, iniciando uma jornada para saciar sua fome e controlar seu terrível poder.",
+        imagem: "/img/aventura/BoG.jpg",
+        trailer: "https://www.youtube.com/embed/lFp0HbjzF64?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+        id: 19,
+        nome: "Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka (Is It Wrong to Try to Pick Up Girls in a Dungeon?)",
+        descricao: "Na cidade de Orario, o jovem aventureiro Bell Cranel sonha em se tornar um herói. Como único membro da família de sua deusa, Hestia, ele explora a perigosa 'Dungeon' e, após ser salvo por uma espadachim lendária, embarca em uma busca frenética por força e reconhecimento.",
+        imagem: "/img/aventura/Danmachi.jpg",
+        trailer: "https://www.youtube.com/embed/sbcwRt0y4kY?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+        id: 20,
+        nome: "Katainaka no Ossan, Kensei ni Naru",
+        descricao: "Beryl Gardenant leva uma vida tranquila como mestre de esgrima em uma vila remota. Sua paz é interrompida quando sua ex-aluna prodígio, agora líder dos Cavaleiros do Reino, o recruta. Beryl, um simples homem de meia-idade, revela-se um mestre espadachim lendário.",
+        imagem: "/img/aventura/Katainaka_no_Ossan,_Kensei ni_Naru.jpg",
+        trailer: "https://www.youtube.com/embed/IFjmH1TPpNk?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+        id: 21,
+        nome: "Jigokuraku (Hell's Paradise)",
+        descricao: "O ninja Gabimaru, o Vazio, é condenado à morte, mas seu corpo se recusa a morrer. Ele recebe uma chance de perdão: viajar para uma ilha misteriosa e encontrar o Elixir da Imortalidade. Acompanhado por uma carrasca, ele enfrenta outros condenados e criaturas aterrorizantes.",
+        imagem: "/img/aventura/Jigokuraku.jpg",
+        trailer: "https://www.youtube.com/embed/fsW0fU1hobQ?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+        id: 22,
+        nome: "Bakugan: Guerreiros da Batalha",
+        descricao: "Cartas misteriosas caem do céu, e Dan Kuso, junto de seus amigos, descobre que elas contêm monstros de batalha chamados Bakugan. Eles se unem para formar os Guerreiros da Batalha, mergulhando em um conflito épico que decidirá o destino da Terra e do mundo de Vestroia.",
+        imagem: "/img/aventura/bakugan.jpg",
+        trailer: "https://www.youtube.com/embed/JCJdZQ2FmJ8",
+      },
+      {
+        id: 23,
+        nome: "Dr. Stone",
+        descricao: "Após um flash de luz petrificar toda a humanidade, o gênio da ciência Senku Ishigami desperta 3.700 anos depois. Em um mundo dominado pela natureza, ele decide usar seu conhecimento para reconstruir a civilização do zero, iniciando uma jornada épica da Idade da Pedra à era moderna.",
+        imagem: "/img/aventura/Dr.Stone.jpg",
+        trailer: "https://www.youtube.com/embed/2ei4KpfCOAI?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+        id: 24,
+        nome: "Sentai Daishikkaku (Go, Go, Loser Ranger!)",
+        descricao: "Há 13 anos, o Esquadrão Dragão Divino protege a Terra de um exército de monstros. Mas a verdade é uma farsa: os monstros foram subjugados e agora são forçados a encenar derrotas semanais. Cansado da humilhação, um único monstro se infiltra no Esquadrão para destruí-los por dentro.",
+        imagem: "/img/aventura/loser_rangers.jpg",
+        trailer: "https://www.youtube.com/embed/UL6WUiz83i0",
+      },
+      {
+        id: 25,
+        nome: "Pokémon: Liga Indigo",
+        descricao: "A jornada de Ash Ketchum para se tornar um Mestre Pokémon começa! Ao completar 10 anos, ele parte da cidade de Pallet com seu primeiro Pokémon, o teimoso Pikachu. Junto com seus amigos Misty e Brock, ele viaja pela região de Kanto, desafiando líderes de ginásio e a Equipe Rocket.",
+        imagem: "/img/aventura/pokemon.jpg",
+        trailer: "https://www.youtube.com/embed/kfgfQPA6oPI?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+        id: 26,
+        nome: "Shingeki no Kyojin (Attack on Titan)",
+        descricao: "A humanidade vive entrincheirada em cidades muradas para se proteger de Titãs, gigantes devoradores de humanos. A vida pacífica de Eren Yeager é destruída quando um Titã colossal rompe a muralha. Jurando vingança, Eren se junta à Divisão de Reconhecimento para erradicar todos os Titãs.",
+        imagem: "/img/aventura/Shingeki.jpg",
+        trailer: "https://www.youtube.com/embed/LHtdKWJdif4?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+        id: 27,
+        nome: "Tougen Anki",
+        descricao: "Shiki Ichinose descobre que tem sangue de Oni (demônio) correndo em suas veias, um segredo que seu pai adotivo guardou a vida toda. Quando seu pai é morto por um 'Momotaro', um caçador de Onis, Shiki jura vingança e mergulha em uma guerra ancestral entre as duas raças.",
+        imagem: "/img/aventura/Tougen_Anki.jpg",
+        trailer: "https://www.youtube.com/embed/CXoluVnOiR8",
+      },
+      {
+        id: 28,
+        nome: "Tsue to Tsurugi no Wistoria (Wistoria: Wand and Sword)",
+        descricao: "Para cumprir uma promessa de infância, Will Serfort se matricula em uma academia de magia, apesar de não poder usar magia alguma. Considerado um fracasso, ele precisa lutar para sobreviver em um mundo mágico usando apenas sua espada e sua determinação inabalável.",
+        imagem: "/img/aventura/Wistoria.jpg",
+        trailer: "https://www.youtube.com/embed/IG7m7OYEqv0",
+      },
+      {
+        id: 29,
+        nome: "Sakamoto Days",
+        descricao: "Taro Sakamoto era o maior assassino de todos os tempos, temido por vilões e admirado por seus pares. Mas um dia, ele se apaixonou, se aposentou, casou e teve uma filha. Agora, vivendo como um pacato dono de loja, ele deve proteger sua família de seu antigo passado sem quebrar sua promessa de nunca mais matar.",
+        imagem: "/img/aventura/sakamoto.jpg",
+        trailer: "https://www.youtube.com/embed/9TbmxbckSjE",
+      },
+      {
+        id: 30,
+        nome: "Zom 100: Bucket List of the Dead",
+        descricao: "Akira Tendo é um homem esgotado por anos de trabalho explorador em uma empresa tóxica. Sua vida perdeu a cor e o sentido, até que um apocalipse zumbi devasta o Japão. Em vez de desespero, Akira sente uma imensa alegria por não precisar mais trabalhar. Com uma nova paixão pela vida, ele cria uma lista de 100 coisas para fazer antes de, inevitavelmente, se tornar um zumbi.",
+        imagem: "/img/aventura/Zom_100.jpg",
+        trailer: "https://www.youtube.com/embed/2VvZIEXmltw",
+      },
+      {
+        id: 31,
+        nome: "Akashic Records of Bastard Magic Instructor",
+        descricao: "Sistine Fibel e sua melhor amiga Rumia Tingel são alunas de uma prestigiosa academia mágica. No entanto, seu professor substituto, Glenn Radars, é um instrutor preguiçoso e aparentemente incompetente. O que elas não sabem é que ele esconde um grande poder e um passado sombrio.",
+        imagem: "/img/fantasia/Akashic_Records.jpg",
+        trailer: "https://www.youtube.com/embed/nzlblisGahI?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 32,
+          nome: "Death Note",
+          descricao: "Light Yagami é um estudante genial que encontra um caderno sobrenatural chamado 'Death Note'. Com ele, é possível matar qualquer pessoa cujo nome seja escrito em suas páginas. Light decide usar esse poder para criar um novo mundo livre de criminosos, mas seus planos são desafiados pelo brilhante detetive L.",
+          imagem: "/img/fantasia/Death_Note.jpg",
+          trailer: "https://www.youtube.com/embed/tJZtOrm-WPk",
+      },
+      {
+          id: 33,
+          nome: "Fullmetal Alchemist: Brotherhood",
+          descricao: "Após uma tentativa falha de transmutação humana, os irmãos Edward e Alphonse Elric perdem partes de seus corpos. Para recuperá-los, eles embarcam em uma jornada em busca da lendária Pedra Filosofal, descobrindo uma conspiração sombria que ameaça todo o país.",
+          imagem: "/img/fantasia/fma.jpg",
+          trailer: "https://www.youtube.com/embed/--IcmZkvL0Q",
+      },
+      {
+          id: 34,
+          nome: "No Game No Life: Zero",
+          descricao: "Este filme é um prelúdio da série principal e se passa 6000 anos antes. Conta a história da Grande Guerra entre as raças, focando em Riku, um jovem líder humano, e Schwi, uma Ex-Machina, que juntos buscam dar um fim ao conflito caótico que assola o mundo.",
+          imagem: "/img/fantasia/No_Game_No_Life_Zero.jpg",
+          trailer: "https://www.youtube.com/embed/Raag8InWBVY?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 35,
+          nome: "Mato Seihei no Slave (Chained Soldier)",
+          descricao: "Em um mundo onde portais para uma dimensão chamada 'Mato' liberam monstros, um novo recurso chamado 'Pêssego' concede poderes incríveis apenas para mulheres. Yuuki Wakura, um jovem em uma sociedade matriarcal, encontra uma oportunidade de brilhar ao se tornar o 'escravo' de Kyouka Uzen, a chefe do 7º Esquadrão Anti-Demônio.",
+          imagem: "/img/fantasia/Mato.jpg",
+          trailer: "https://www.youtube.com/embed/VRtgogamuyI?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 36,
+          nome: "Gachiakuta",
+          descricao: "Rudo vive em um gueto para os descendentes de criminosos. Acusado injustamente de um crime que não cometeu, ele é jogado no 'Abismo', um lugar temido por todos. Lá, ele descobre a verdade sobre o mundo e ganha o poder de transformar objetos em armas, juntando-se a um grupo conhecido como 'Faxineiros' para lutar e mudar seu destino.",
+          imagem: "/img/fantasia/Gachakuta.jpg",
+          trailer: "https://www.youtube.com/embed/yeRvDchyo44?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 37,
+          nome: "Frieren: Beyond Journey's End",
+          descricao: "Após derrotarem o Rei Demônio, o grupo de heróis se separa. Frieren, a maga elfa, tem uma vida quase imortal. Décadas depois, ao reencontrar seus companheiros no fim de suas vidas, ela lamenta não tê-los conhecido melhor. Arrependida, Frieren embarca em uma nova jornada para entender a humanidade e o valor das conexões.",
+          imagem: "/img/fantasia/Frieren.jpg",
+          trailer: "https://www.youtube.com/embed/ZEkwCGJ3o7M?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 38,
+          nome: "Dungeon Meshi (Delicious in Dungeon)",
+          descricao: "Quando sua irmã é devorada por um dragão no fundo de uma masmorra, o aventureiro Laios e seu grupo perdem todo o seu equipamento. Para resgatá-la antes que seja digerida, eles decidem economizar dinheiro e tempo se alimentando dos monstros que encontram pelo caminho, aprendendo a arte da culinária de masmorra.",
+          imagem: "/img/fantasia/dungeon_meshi.jpg",
+          trailer: "https://www.youtube.com/embed/MUJFsL_rE6E?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 39,
+          nome: "Tokyo Ghoul",
+          descricao: "Em uma Tóquio assombrada por criaturas chamadas 'Ghouls', que se alimentam de carne humana, o estudante Ken Kaneki tem sua vida virada de cabeça para baixo após um encontro violento. Ele se torna um meio-ghoul e é forçado a se adaptar a um novo mundo sombrio, lutando para sobreviver entre humanos e ghouls.",
+          imagem: "/img/fantasia/Tokyo_Gohul.jpg",
+          trailer: "https://www.youtube.com/embed/vGuQeQsoRgU",
+      },
+      {
+          id: 40,
+          nome: "Sentouin, Haken shimasu! (Combatants Will Be Dispatched!)",
+          descricao: "A Corporação Kisaragi, uma organização secreta do mal, está perto de dominar o mundo. Para expandir seus horizontes, eles enviam o Agente de Combate Seis e a androide Alice para um planeta alienígena. A missão deles é simples: infiltrar-se, conquistar o novo mundo e lutar contra o 'Exército do Lorde Demônio'... ou o que quer que eles encontrem por lá.",
+          imagem: "/img/fantasia/Sentouin,_Haken shimasu!.jpg",
+          trailer: "https://www.youtube.com/embed/3DHctZTqsFo?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 41,
+          nome: "Hikaru ga Shinda Natsu (The Summer Hikaru Died)",
+          descricao: "Yoshiki e Hikaru são dois garotos que cresceram juntos em uma aldeia. Um dia, Yoshiki percebe que algo substituiu seu amigo. Embora tenha a aparência de Hikaru, ele sabe que não é o mesmo. Apesar do medo, Yoshiki não consegue abandonar 'Hikaru' e eles tentam continuar a vida, mas a aldeia começa a registrar eventos estranhos e assustadores.",
+          imagem: "/img/fantasia/hikaru.jpg",
+          trailer: "https://www.youtube.com/embed/sFaO07LwAVg?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 42,
+          nome: "Hyouken no Majutsushi ga Sekai wo Suberu (The Iceblade Sorcerer Shall Rule the World)",
+          descricao: "Ray White é o primeiro plebeu a se matricular na prestigiosa Academia de Magia Arnold. Embora seja desprezado por sua origem, ele esconde a identidade do Mago da Lâmina de Gelo, um dos sete maiores magos do mundo. Ele busca uma vida normal, mas os segredos do passado e as conspirações da academia não o deixarão em paz.",
+          imagem: "/img/fantasia/Hyouken_no_Majutsushi_ga_Sekai_wo_Suberu.jpg",
+          trailer: "https://www.youtube.com/embed/6bgHin7J8XY?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 43,
+          nome: "Nanatsu no Taizai (The Seven Deadly Sins)",
+          descricao: "Em uma tentativa de retomar seu reino, a princesa Elizabeth busca os 'Sete Pecados Capitais', um grupo de cavaleiros lendários que foram exilados. Sua jornada começa ao encontrar Meliodas, o Pecado da Ira, e seu porco falante, Hawk. Juntos, eles partem para reunir os outros Pecados e lutar contra os tirânicos Cavaleiros Sagrados.",
+          imagem: "/img/fantasia/nanatsu.jpg",
+          trailer: "https://www.youtube.com/embed/wxcvbL6o55M?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 44,
+          nome: "NieR:Automata Ver1.1a",
+          descricao: "Em um futuro distante, a humanidade foi forçada a se refugiar na lua após uma invasão de formas de vida mecânicas. A resistência envia androides de combate, conhecidos como YoRHa, para lutar na Terra. A história segue os androides 2B e 9S em sua guerra brutal, onde descobrem segredos que podem mudar tudo o que conhecem.",
+          imagem: "/img/fantasia/Nier.jpg",
+          trailer: "https://www.youtube.com/embed/Se-H5iXKdDw?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+        
+          id: 45,
+          nome: "Isshun de Chiryou shiteita noni Yakutatazu to Tsuihou sareta Tensai Chiyushi, Yami Healer toshite Tanoshiku Ikiru (The Brilliant Healer's New Life in the Shadows)",
+          descricao: "Zenos é um clérigo genial cuja habilidade de cura é tão poderosa que funciona instantaneamente. No entanto, por ser 'eficiente demais', ele é considerado inútil e assustador por seus companheiros de um grupo rank-S, que o expulsam cruelmente. Desiludido, Zenos decide abandonar a vida na linha de frente e se torna o 'Curandeiro das Sombras', usando seu poder esmagador para viver como bem entender.",
+          imagem: "/img/fantasia/healer.jpg",
+          trailer: "https://www.youtube.com/embed/3E5gmPGu238?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 46,
+          nome: "KonoSuba: God's Blessing on This Wonderful World!",
+          descricao: "Após uma morte prematura e vergonhosa, o jovem Kazuma Satou recebe a chance de reencarnar em um mundo de fantasia. Ele pode levar consigo qualquer coisa que desejar, e escolhe a deusa Aqua, que o estava ridicularizando. Juntos, eles formam um grupo disfuncional com uma maga obcecada por explosões e uma paladina masoquista, embarcando em aventuras caóticas e hilárias.",
+          imagem: "/img/isekai/KonoSuba.jpg",
+          trailer: "https://www.youtube.com/embed/NU87y-38glA?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 47,
+          nome: "Tate no Yuusha no Nariagari (The Rising of the Shield Hero)",
+          descricao: "Naofumi Iwatani é invocado para um mundo de fantasia como um dos Quatro Heróis Cardinais, o Herói do Escudo. Visto como o mais fraco, ele é traído, falsamente acusado e abandonado por todos. Consumido pelo ódio, Naofumi precisa lutar para sobreviver e se tornar mais forte, contando apenas com sua escrava demi-humana, Raphtalia.",
+          imagem: "/img/isekai/Tate_no_Yuusha.jpg",
+          trailer: "https://www.youtube.com/embed/h3n-chI028E?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 48,
+          nome: "Sword Art Online",
+          descricao: "No ano de 2022, um jogo de realidade virtual massivo chamado 'Sword Art Online' é lançado. Os jogadores descobrem que não podem deslogar e que morrer no jogo significa morrer na vida real. A única saída é zerar os 100 andares do castelo flutuante de Aincrad. A história segue Kirito, um jogador solo, em sua luta pela sobrevivência.",
+          imagem: "/img/isekai/Sword_Art _Online.jpg",
+          trailer: "https://www.youtube.com/embed/Z6I1IS6joFY",
+      },
+      {
+          id: 49,
+          nome: "Mushoku Tensei: Jobless Reincarnation",
+          descricao: "Um NEET de 34 anos morre em um acidente e reencarna em um mundo de fantasia como Rudeus Greyrat. Mantendo suas memórias da vida passada, ele decide viver esta nova vida ao máximo, sem arrependimentos. Com um talento prodigioso para a magia desde cedo, Rudeus embarca em uma jornada épica de crescimento, aventura e redenção.",
+          imagem: "/img/isekai/Mushoku_Tensei.jpg",
+          trailer: "https://www.youtube.com/embed/Qx01pn9l-6g?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 50,
+          nome: "Tensei shitara Slime Datta Ken (That Time I Got Reincarnated as a Slime)",
+          descricao: "Satoru Mikami, um homem de 37 anos, é morto e reencarna em um mundo de fantasia como um Slime, a criatura mais fraca. No entanto, com sua habilidade única 'Predador', ele pode absorver e imitar as habilidades de qualquer coisa que devora. Ele logo se torna um ser extremamente poderoso, construindo uma nação de monstros em um mundo cheio de aventuras.",
+          imagem: "/img/isekai/Tensei_shitara_Slime.jpg",
+          trailer: "https://www.youtube.com/embed/LnbUaSewc18",
+      },
+      {
+          id: 51,
+          nome: "No Game No Life",
+          descricao: "Os irmãos Sora e Shiro são gamers lendários conhecidos como『　』(Lacuna). Um dia, eles são desafiados para um jogo de xadrez por um deus de outra realidade e, ao vencerem, são transportados para Disboard, um mundo onde todos os conflitos são resolvidos através de jogos. Eles partem para unir as raças e desafiar o deus desse mundo.",
+          imagem: "/img/isekai/No_Game_No_Life.jpg",
+          trailer: "https://www.youtube.com/embed/TqMCYf1FibU",
+      },
+      {
+          id: 52,
+          nome: "Isekai Ojisan (Uncle from Another World)",
+          descricao: "Após 17 anos em coma, o tio de Takafumi acorda subitamente, afirmando ter passado todo esse tempo em um mundo mágico. Cético a princípio, Takafumi descobre que seu tio realmente possui poderes mágicos. Juntos, eles iniciam um canal no YouTube enquanto o tio compartilha suas aventuras, muitas vezes trágicas e socialmente desajeitadas, no outro mundo.",
+          imagem: "/img/isekai/Isekai_Ojisan.jpg",
+          trailer: "https://www.youtube.com/embed/p73c08lLJc8?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 53,
+          nome: "Otome Game Sekai wa Mob ni Kibishii Sekai desu (Trapped in a Dating Sim: The World of Otome Games is Tough for Mobs)",
+          descricao: "Um assalariado morre e reencarna no mundo de um 'otome game' (jogo de romance para mulheres) que ele era forçado a jogar. Para sua infelicidade, ele não é um dos interesses amorosos da protagonista, mas sim um personagem de fundo (mob). Usando seu conhecimento do jogo, ele tenta viver uma vida pacífica, mas acaba se envolvendo nos principais eventos da trama.",
+          imagem: "/img/isekai/Otome_Game_Sekai.jpg",
+          trailer: "https://www.youtube.com/embed/8G9dunL-zPI?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 54,
+          nome: "Tensei Kizoku no Isekai Boukenroku (The Aristocrat's Otherworldly Adventure: Serving Gods Who Go Too Far)",
+          descricao: "Shiinya Kazuya morre tentando salvar uma garota e reencarna como Cain von Silford, o terceiro filho de uma família aristocrata em um mundo de fantasia. Os deuses que o reencarnaram lhe concedem bênçãos divinas e estatísticas absurdas. Cain tenta esconder seus poderes para ter uma vida normal, mas suas habilidades extraordinárias o colocam em grandes aventuras.",
+          imagem: "/img/isekai/Tensei_Kizoku_no_Isekai.jpg",
+          trailer: "https://www.youtube.com/embed/BSdONbzXf9k?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 55,
+          nome: "Kage no Jitsuryokusha ni Naritakute! (The Eminence in Shadow)",
+          descricao: "Cid Kagenou sonha em ser um 'eminência nas sombras', alguém que manipula tudo dos bastidores. Após reencarnar em um mundo de fantasia, ele cria uma organização falsa, a 'Shadow Garden', para combater um culto maligno que ele inventou. O problema é que o culto e a conspiração são reais, e seus seguidores acreditam que ele é um gênio onisciente.",
+          imagem: "/img/isekai/The_Eminence_in_Shadow.jpg",
+          trailer: "https://www.youtube.com/embed/H-3fre7943U?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 56,
+          nome: "Shinchou Yuusha (Cautious Hero: The Hero Is Overpowered but Overly Cautious)",
+          descricao: "A deusa Ristarte invoca um herói para salvar seu mundo de uma ameaça terrível. O herói, Seiya Ryuuguuin, é extremamente poderoso, mas também inacreditavelmente cauteloso. Ele treina até atingir o nível máximo, compra três conjuntos de armadura (um para usar, um reserva e um reserva para o reserva) e usa seu ataque mais forte até em slimes, para garantir.",
+          imagem: "/img/isekai/Shinchou_Yuusha.jpg",
+          trailer: "https://www.youtube.com/embed/-K4TaXrKHRc?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 57,
+          nome: "Chiyu Mahou no Machigatta Tsukaikata (The Wrong Way to Use Healing Magic)",
+          descricao: "Usato Ken, um estudante comum, é acidentalmente invocado para outro mundo junto com dois colegas de escola. Enquanto seus amigos são os heróis, Usato descobre ter uma afinidade rara com magia de cura. Em vez de ficar na retaguarda, ele é forçado a passar por um treinamento infernal para se tornar um mago de cura de combate, usando seus poderes de formas nada convencionais.",
+          imagem: "/img/isekai/The_Wrong_Way_to_Use_Healing_Magic.jpg",
+          trailer: "https://www.youtube.com/embed/WMBLLOa3Ldw?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 58,
+          nome: "Hazurewaku no Joutai Ijou Skill de Saikyou ni Natta Ore ga Subete wo Juurin suru made (Failure Frame: I Became the Strongest)",
+          descricao: "Mimori Touka e seus colegas são transportados para outro mundo para serem heróis. Enquanto a maioria recebe habilidades de alto nível, Touka recebe apenas uma habilidade de Rank E, 'Paralisia'. Considerado inútil, ele é abandonado em uma masmorra mortal. No entanto, ele descobre que suas habilidades 'inúteis' são, na verdade, extremamente poderosas, e inicia sua jornada de vingança.",
+          imagem: "/img/isekai/Hazurewaku_no_Joutai Ijou Skill.jpg",
+          trailer: "https://www.youtube.com/embed/oxaZZk3G30Y?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 59,
+          nome: "Isekai Suicide Squad (Suicide Squad Isekai)",
+          descricao: "Arlequina, Pistoleiro e outros supervilões do Esquadrão Suicida são enviados de Gotham para um mundo de fantasia, um 'isekai' de espadas e magia, cheio de orcs e dragões. Com explosivos implantados em seus pescoços, eles devem completar uma missão perigosa neste novo e bizarro reino ou morrer tentando.",
+          imagem: "/img/isekai/Ssquad_isekai.jpg",
+          trailer: "https://www.youtube.com/embed/PqEAMgMeLDg?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 60,
+          nome: "Arifureta Shokugyou de Sekai Saikyou (Arifureta: From Commonplace to World's Strongest)",
+          descricao: "Hajime Nagumo e sua classe são transportados para outro mundo. Enquanto seus colegas ganham habilidades poderosas, Hajime recebe apenas a habilidade comum de 'Sinergista'. Traído por um colega e jogado no fundo de um abismo, ele sobrevive comendo monstros e se torna impiedoso e extremamente forte, buscando um caminho para voltar para casa.",
+          imagem: "/img/isekai/Arifureta.jpg",
+          trailer: "https://www.youtube.com/embed/xoIaPNWLxy0?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 61,
+          nome: "2.5 Jigen no Ririsa (2.5 Dimensional Seduction)",
+          descricao: "Masanume Okumura é um estudante e presidente do clube de mangá da escola. Sua única paixão são personagens 2D. Um dia, uma nova aluna chamada Ririsa Amano se junta ao clube com o sonho de se tornar uma cosplayer profissional. Seu personagem favorito é o mesmo de Okumura, e ela o convence a se tornar seu fotógrafo.",
+          imagem: "/img/romance/2.5-jigen_no_Ririsa.jpg",
+          trailer: "https://www.youtube.com/embed/qZw4qxjKOiU?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 62,
+          nome: "High Score Girl",
+          descricao: "Nos anos 90, no auge da febre dos jogos de luta de fliperama, o gamer Haruo Yaguchi encontra uma adversária à sua altura: a rica e silenciosa Akira Oono. A rivalidade e amizade deles se desenvolvem através de vários jogos clássicos da época, traçando a evolução dos videogames e do relacionamento entre os dois.",
+          imagem: "/img/romance/High_Score_Girl.jpg",
+          trailer: "https://www.youtube.com/embed/w0uPwT7nLQ4?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 63,
+          nome: "Jiisan Baasan Wakagaeru (Grandpa and Grandma Turn Young Again)",
+          descricao: "Shozo e Ine Saito são um casal de idosos que vivem uma vida simples e feliz no interior. Um dia, eles acordam e descobrem que magicamente voltaram a ter a aparência de seus 20 anos. Mantendo a mentalidade e as experiências de uma vida inteira, eles aproveitam sua juventude recém-descoberta, surpreendendo sua família e amigos.",
+          imagem: "/img/romance/Jiisan_Baasan.jpg",
+          trailer: "https://www.youtube.com/embed/QKo-d7pmPRM?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 64,
+          nome: "Kaguya-sama wa Kokurasetai: Tensai-tachi no Renai Zunousen (Kaguya-sama: Love Is War)",
+          descricao: "No conselho estudantil da Academia Shuchiin, o presidente Miyuki Shirogane e a vice-presidente Kaguya Shinomiya são considerados o casal perfeito. Ambos são gênios e estão apaixonados um pelo outro, mas são orgulhosos demais para admitir. O resultado é uma guerra psicológica diária, onde tentam forçar o outro a se declarar primeiro.",
+          imagem: "/img/romance/Kaguya_sama.jpg",
+          trailer: "https://www.youtube.com/embed/Ti2kJ-GYO68?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 65,
+          nome: "Ijiranaide, Nagatoro-san (Don't Toy with Me, Miss Nagatoro)",
+          descricao: "Naoto Hachiouji é um estudante tímido e introvertido que adora desenhar. Sua vida muda quando ele se torna o alvo de Hayase Nagatoro, uma colega mais nova que adora provocá-lo e importuná-lo. Embora suas provocações o deixem constrangido, ele lentamente percebe que há um interesse genuíno por trás delas, e uma amizade incomum começa a florescer.",
+          imagem: "/img/romance/Nagatoro.jpg",
+          trailer: "https://www.youtube.com/embed/umJL7Pbcic8",
+      },
+      {
+          id: 66,
+          nome: "Koi wa Sekai Seifuku no Ato de (Love After World Domination)",
+          descricao: "Fudo Aikawa é o líder do esquadrão de heróis Gelato 5, e Desumi Magahara é uma das líderes da organização vilã Gekko. Publicamente, eles são inimigos mortais. Secretamente, eles estão apaixonados e namorando. A série acompanha seus esforços para manter o relacionamento em segredo de seus respectivos times, levando a situações hilárias.",
+          imagem: "/img/romance/Koi_wa_Sekai.jpg",
+          trailer: "https://www.youtube.com/embed/X0nC507gZw8?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 67,
+          nome: "Nisekoi: False Love",
+          descricao: "Raku Ichijou é o herdeiro de uma família yakuza e guarda um medalhão que só pode ser aberto pela chave que ele deu a uma garota em sua infância. Sua vida se complica quando ele é forçado a fingir ser o namorado de Chitoge Kirisaki, a filha de um chefe de gangue rival, para evitar uma guerra. O problema é que Chitoge é a garota que ele mais detesta na escola.",
+          imagem: "/img/romance/Nisekoi.jpg",
+          trailer: "https://www.youtube.com/embed/Pu-n_4CLXLA?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 68,
+          nome: "Romantic Killer",
+          descricao: "Anzu Hoshino é uma garota que ama três coisas: videogames, chocolate e seu gato. Sua vida vira de cabeça para baixo quando um mago chamado Riri aparece e a força a participar de um 'jogo de romance' da vida real, tirando suas coisas favoritas para que ela se concentre em encontrar o amor. Determinada a resistir, Anzu se torna uma 'assassina de romances'.",
+          imagem: "/img/romance/Romantic_Killer.jpg",
+          trailer: "https://www.youtube.com/embed/jcmnHOJm8-A?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 69,
+          nome: "Sono Bisque Doll wa Koi wo Suru (My Dress-Up Darling)",
+          descricao: "Wakana Gojo é um estudante do ensino médio que sonha em se tornar um artesão de bonecas Hina, um hobby que ele mantém em segredo. Sua vida muda quando Marin Kitagawa, a garota mais popular da classe, descobre seu talento para costura e o convence a ajudá-la a criar trajes de cosplay. Uma amizade inesperada e um romance florescem entre os dois.",
+          imagem: "/img/romance/Sono_Bisque_Doll.jpg",
+          trailer: "https://www.youtube.com/embed/tFKDKd8z-NU?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 70,
+          nome: "Tonikaku Kawaii (TONIKAWA: Over The Moon For You)",
+          descricao: "Nasa Yuzaki é atropelado por um caminhão na noite de seus exames de admissão, mas é salvo por uma garota incrivelmente fofa. Ele se apaixona à primeira vista e se declara. A garota, Tsukasa, concorda em namorá-lo, mas apenas se eles se casarem primeiro. Anos depois, ela reaparece em sua porta com os papéis do casamento, dando início a uma vida de casado doce e misteriosa.",
+          imagem: "/img/romance/Tonikawa.jpg",
+          trailer: "https://www.youtube.com/embed/3M7w-ROU62U?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 71,
+          nome: "Uzaki-chan wa Asobitai! (Uzaki-chan Wants to Hang Out!)",
+          descricao: "Shinichi Sakurai só quer um pouco de paz e sossego em sua vida universitária. No entanto, sua colega barulhenta e bem-dotada, Hana Uzaki, tem outros planos. Ela decide que ele é muito solitário e faz de sua missão pessoal tirá-lo de sua concha, seguindo-o e provocando-o constantemente, para seu aborrecimento e eventual afeição.",
+          imagem: "/img/romance/Uzaki_chan.jpg",
+          trailer: "https://www.youtube.com/embed/PBvd29TjxYw?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 72,
+          nome: "Wotaku ni Koi wa Muzukashii (Wotakoi: Love is Hard for Otaku)",
+          descricao: "Narumi Momose esconde de todos que é uma fujoshi (fã de romances boys' love). Em seu novo emprego, ela reencontra Hirotaka Nifuji, um amigo de infância que é um otaku hardcore de jogos. Ele sugere que eles namorem, já que seriam um casal de otakus perfeito. A série acompanha seu relacionamento e o de seus amigos, mostrando as alegrias e os desafios do amor entre adultos otakus.",
+          imagem: "/img/romance/wotakoi.jpg",
+          trailer: "https://www.youtube.com/embed/Tcdi6w_I0cE?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 73,
+          nome: "Tomo-chan wa Onnanoko! (Tomo-chan Is a Girl!)",
+          descricao: "Tomo Aizawa finalmente consegue confessar seu amor por seu amigo de infância, Junichirou Kubota. O único problema é que ele sempre a viu como um de seus amigos homens e não percebe a confissão. Tomo, determinada a fazê-lo vê-la como uma garota, embarca em uma série de tentativas hilárias para mudar a percepção dele.",
+          imagem: "/img/romance/Tomo_chan.jpg",
+          trailer: "https://www.youtube.com/embed/Fmpa10BFimE?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+      {
+          id: 74,
+          nome: "School Days",
+          descricao: "Makoto Itou se apaixona por Kotonoha Katsura, uma garota que ele vê no trem todos os dias. Sua colega, Sekai Saionji, decide ajudá-lo a se aproximar dela. No entanto, o plano toma um rumo inesperado quando Sekai também desenvolve sentimentos por Makoto, levando a um triângulo amoroso complexo e a um dos finais mais chocantes e infames da história dos animes.",
+          imagem: "/img/romance/School_Days.jpg",
+          trailer: "https://www.youtube.com/embed/ZG1Q6N5L-fo",
+      },
+      {
+          id: 75,
+          nome: "Tokidoki Bosotto Russia-go de Dereru Tonari no Alya-san (Alya Sometimes Hides Her Feelings in Russian)",
+          descricao: "Alisa Mikhailovna Kujou, conhecida como Alya, é uma estudante meio russa e meio japonesa que senta ao lado de Masachika Kuze. Ela frequentemente murmura coisas em russo, pensando que ninguém a entende. No entanto, Masachika entende russo perfeitamente, mas finge que não, aproveitando os doces e afetuosos comentários que ela faz sobre ele em segredo.",
+          imagem: "/img/romance/Tokidoki_Bosotto_Russia-go.jpg",
+          trailer: "https://www.youtube.com/embed/pBX6TtOlYow?enablejsapi=1&wmode=opaque&autoplay=1",
+      },
+    ];
+
+   
+    // Pega o id da URL (ex: detalhes.html?id=1)
+const params = new URLSearchParams(window.location.search);
+const id = parseInt(params.get("id")); // Converte para número
+
+// Busca o anime no array 'animes' com base no id
+const anime = animes.find((a) => a.id === id);
+
+// Referências aos elementos do DOM onde os dados serão exibidos
+const imgElem = document.getElementById("imagem"); // Imagem do anime
+const tituloElem = document.getElementById("titulo"); // Título do anime
+const descricaoElem = document.getElementById("descricao"); // Descrição do anime
+const trailerSection = document.getElementById("trailer-section"); // Seção do trailer
+const trailerIframe = document.getElementById("trailer"); // Iframe do trailer
+const errorSection = document.getElementById("error-section"); // Seção de erro
+const animeDetailsDiv = document.querySelector(".anime-details"); // Div de detalhes do anime
+
+// Se o anime existir no array
+if (anime) {
+  // Atualiza a imagem, título e descrição
+  imgElem.src = anime.imagem;
+  imgElem.alt = anime.nome;
+  tituloElem.textContent = anime.nome;
+  descricaoElem.textContent = anime.descricao;
+
+  // Coloca o link do trailer no iframe
+  // É aqui que o vídeo embed do YouTube é carregado
+  trailerIframe.src = anime.trailer;
+  trailerIframe.title = `Trailer de ${anime.nome}`;
+
+  // Mostra a seção do trailer e esconde a mensagem de erro
+  trailerSection.style.display = "block";
+  errorSection.style.display = "none";
+  animeDetailsDiv.style.display = "flex";
+} else {
+  // Se não encontrou o anime, esconde trailer e detalhes
+  // Mostra a mensagem de erro
+  trailerSection.style.display = "none";
+  errorSection.style.display = "block";
+  animeDetailsDiv.style.display = "none";
+}
+  </script>
+</body>
+</html>

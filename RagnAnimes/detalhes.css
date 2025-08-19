@@ -1,0 +1,106 @@
+/* Estilo base do corpo da página */
+body {
+  font-family: Arial, sans-serif; /* Fonte padrão */
+  background: #111;              /* Fundo escuro */
+  color: white;                  /* Texto branco */
+  margin: 0;                     /* Remove margens padrão */
+  padding: 0;                    /* Remove padding padrão */
+}
+
+/* Estilo do cabeçalho */
+header {
+  background: black;             /* Fundo preto */
+  padding: 15px 20px;            /* Espaçamento interno */
+  display: flex;                 /* Layout flexível */
+  align-items: center;           /* Alinha verticalmente */
+  justify-content: space-between; /* Espaço entre logo e link */
+}
+
+/* Logo do cabeçalho */
+header h1 {
+  color: red;                    /* Cor vermelha */
+  margin: 0;                     /* Remove margem padrão */
+  font-size: 1.5rem;             /* Tamanho da fonte */
+}
+
+/* Link de voltar */
+.back-link {
+  color: white;                  /* Cor branca */
+  text-decoration: none;         /* Remove sublinhado */
+  font-size: 1rem;               /* Tamanho da fonte */
+  border: 1px solid white;       /* Borda branca */
+  padding: 5px 10px;             /* Espaçamento interno */
+  border-radius: 4px;            /* Bordas arredondadas */
+  transition: background 0.3s ease; /* Animação suave no hover */
+}
+
+/* Hover do link de voltar */
+.back-link:hover {
+  background: red;               /* Fundo vermelho */
+  color: white;                  /* Mantém texto branco */
+}
+
+/* Container principal */
+.container {
+  max-width: 900px;              /* Largura máxima */
+  margin: 20px auto;             /* Centraliza na tela */
+  padding: 0 20px;               /* Espaçamento interno lateral */
+}
+
+/* Detalhes do anime: imagem + informações */
+.anime-details {
+  display: flex;                 /* Layout flexível */
+  gap: 20px;                     /* Espaço entre itens */
+  align-items: flex-start;       /* Alinha ao topo */
+  flex-wrap: wrap;               /* Permite quebra em telas pequenas */
+}
+
+/* Imagem do anime */
+.anime-details img {
+  max-width: 300px;              /* Largura máxima */
+  width: 100%;                   /* Responsivo */
+  border-radius: 8px;            /* Bordas arredondadas */
+  object-fit: cover;             /* Corta a imagem proporcionalmente */
+}
+
+/* Div de informações do anime */
+.info {
+  flex: 1;                       /* Ocupa o espaço restante */
+}
+
+/* Título do anime */
+.info h2 {
+  margin-top: 0;                 /* Remove margem superior */
+  color: #ff4b4b;                /* Cor vermelha clara */
+}
+
+/* Descrição do anime */
+.info p {
+  font-size: 1.1rem;             /* Tamanho da fonte */
+  line-height: 1.4;              /* Espaçamento entre linhas */
+  margin-top: 10px;              /* Espaçamento acima do parágrafo */
+}
+
+/* Seção do trailer */
+.trailer-section {
+  margin-top: 40px;              /* Espaçamento acima da seção */
+}
+
+/* Título do trailer */
+.trailer-section h2 {
+  color: #ff4b4b;                /* Mesma cor do título */
+  margin-bottom: 10px;           /* Espaço abaixo do título */
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 600px) {
+  .anime-details {
+    flex-direction: column;      /* Alinha verticalmente */
+    align-items: center;         /* Centraliza os itens */
+  }
+
+  .trailer-section iframe {
+    width: 100%;                 /* Ocupa toda a largura */
+    height: 200px;               /* Altura menor para celular */
+  }
+}
