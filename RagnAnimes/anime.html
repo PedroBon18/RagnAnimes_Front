@@ -7,12 +7,12 @@
   <!-- Ícone da aba do navegador -->
   <link rel="shortcut icon" href="/img/favicon/favicon.png" type="image/x-icon">
   <!-- Link para o arquivo CSS que estiliza esta página -->
-  <link rel="stylesheet" href="detalhes.css" />
+  <link rel="stylesheet" href="anime.css" />
 </head>
 <body>
   <header>
     <!-- Logo do site -->
-    <h1><img src="/img/logo/logo.png" alt="logo"></h1>
+    <h1><img src="/img/logo/logo.png" alt="logo"><div class="servicos"></div></h1>
     <!-- Link de voltar para a página principal -->
     <a href="index.html" class="back-link">← Voltar</a>
   </header>
@@ -23,6 +23,9 @@
       <div class="info"> 
         <h2 id="titulo"></h2><!-- O título do anime será inserido aqui via JavaScript usando o campo "nome" do objeto do anime. -->
         <p id="descricao"></p><!-- A descrição do anime será inserida aqui via JavaScript usando o campo "descricao" do objeto do anime. -->
+      
+        <div id="servicos-container" class="servicos-grid"></div>
+        </div>
       </div>
     </div>
 
@@ -52,6 +55,57 @@
       <p>O anime que você está procurando não existe ou foi removido.</p>
     </section>
   </main>
+    <div id="servicos-container">
+  <div class="servico-item">
+    <img src="imagens/crunchyroll.png" alt="Crunchyroll" class="servico-icone">
+    <p class="servico-nome">Crunchyroll - <span>Disponível</span></p>
+  </div>
+
+  <div class="servico-item">
+    <img src="imagens/netflix.png" alt="Netflix" class="servico-icone">
+    <p class="servico-nome">Netflix - <span>Disponível</span></p>
+  </div>
+
+  <div class="servico-item">
+    <img src="imagens/primevideo.png" alt="Amazon Prime Video" class="servico-icone">
+    <p class="servico-nome">Amazon Prime Video - <span>Disponível</span></p>
+  </div>
+
+  <div class="servico-item">
+    <img src="imagens/mercadoplay.png" alt="Mercado Play" class="servico-icone">
+    <p class="servico-nome">Mercado Play - <span>Disponível</span></p>
+  </div>
+
+  <div class="servico-item">
+    <img src="imagens/animefire.png" alt="AnimeFire" class="servico-icone">
+    <p class="servico-nome">AnimeFire - <span>Disponível</span></p>
+  </div>
+
+  <div class="servico-item">
+    <img src="imagens/animeonegai.png" alt="Anime Onegai" class="servico-icone">
+    <p class="servico-nome">Anime Onegai - <span>Disponível</span></p>
+  </div>
+
+  <div class="servico-item">
+    <img src="imagens/animesroll.png" alt="Animes Roll" class="servico-icone">
+    <p class="servico-nome">Animes Roll - <span>Disponível</span></p>
+  </div>
+
+  <div class="servico-item">
+    <img src="imagens/plutotv.png" alt="Pluto TV" class="servico-icone">
+    <p class="servico-nome">Pluto TV - <span>Disponível</span></p>
+  </div>
+
+  <div class="servico-item">
+    <img src="imagens/animesorion.png" alt="Animes Orion" class="servico-icone">
+    <p class="servico-nome">Animes Orion - <span>Disponível</span></p>
+  </div>
+
+  <div class="servico-item">
+    <img src="imagens/hinatasoul.png" alt="Hinata Soul" class="servico-icone">
+    <p class="servico-nome">Hinata Soul - <span>Disponível</span></p>
+  </div>
+</div>
 
   <script> //JavaScript
     const animes = [
@@ -97,6 +151,7 @@
         descricao: "Naruto Uzumaki é um jovem ninja rejeitado por sua vila por ter a Raposa de Nove Caudas selada dentro de si. Determinado a provar seu valor, ele sonha em se tornar o Hokage, o líder e ninja mais forte da aldeia, vivendo inúmeras aventuras ao lado de seus amigos.",
         imagem: "/img/acao/naruto.jpg",
         trailer: "https://www.youtube.com/embed/de4PTw0t6sY",
+        
       },
       {
         id: 6,
@@ -104,6 +159,21 @@
         descricao: "Dois anos e meio após sua jornada de treinamento, Naruto Uzumaki retorna à Vila da Folha mais forte e determinado. Ele reencontra seus amigos e enfrenta a Akatsuki, uma organização criminosa que busca capturar as Bestas de Caudas, enquanto continua sua busca para salvar seu amigo Sasuke Uchiha da escuridão.",
         imagem: "/img/acao/naruto_shipuuden.jpg",
         trailer: "https://www.youtube.com/embed/w4Gth_d1rSM",
+        // NOVA PROPRIEDADE ABAIXO
+
+        servicos: [
+          { nome: 'Crunchyroll', icone: '/img/icones/crunchyroll.png' },
+          { nome: 'Mercado Play', icone: '/img/icones/mercadoplay.png' },
+          { nome: 'Netflix', icone: '/img/icones/netflix.png' },
+          { nome: 'AnimeFire', icone: '/img/icones/animefire.png' },
+          { nome: 'Amazon Prime Video', icone: '/img/icones/primevideo.png' },
+          { nome: 'Hinata Soul', icone: '/img/icones/hinatasoul.png' },
+          { nome: 'Anime Onegai', icone: '/img/icones/onegai.png' },
+          { nome: 'Animes Roll', icone: '/img/icones/animesroll.png' },
+          { nome: 'Pluto TV', icone: '/img/icones/plutotv.png' },
+          { nome: 'Animes Orion', icone: '/img/icones/orion.png' }
+          
+        ]
       },
       {
         id: 7,
@@ -608,6 +678,36 @@ const trailerIframe = document.getElementById("trailer"); // Iframe do trailer
 const errorSection = document.getElementById("error-section"); // Seção de erro
 const animeDetailsDiv = document.querySelector(".anime-details"); // Div de detalhes do anime
 
+// NOVA REFERÊNCIA AO CONTAINER DOS SERVIÇOS
+const servicosContainer = document.getElementById("servicos-container");
+
+// Se o anime existir no array
+if (anime) {
+  // Atualiza a imagem, título e descrição
+  imgElem.src = anime.imagem;
+  imgElem.alt = anime.nome;
+  tituloElem.textContent = anime.nome;
+  descricaoElem.textContent = anime.descricao;
+
+  // ==========================================================
+  // NOVA PARTE: CRIA A LISTA DE SERVIÇOS
+  // ==========================================================
+  servicosContainer.innerHTML = '';
+
+  if (anime.servicos && anime.servicos.length > 0) {
+    anime.servicos.forEach(servico => {
+      const servicoHTML = `
+        <div class="servico-item">
+          <img src="${servico.icone}" alt="Ícone de ${servico.nome}" class="servico-icone">
+          <p class="servico-nome">${servico.nome} - <span>Disponível</span></p>
+        </div>
+      `;
+      servicosContainer.innerHTML += servicoHTML;
+    });
+  }
+}
+
+
 // Se o anime existir no array
 if (anime) {
   // Atualiza a imagem, título e descrição
@@ -632,6 +732,9 @@ if (anime) {
   errorSection.style.display = "block";
   animeDetailsDiv.style.display = "none";
 }
+
+
   </script>
+
 </body>
 </html>

@@ -103,4 +103,117 @@ header h1 {
     width: 100%;                 /* Ocupa toda a largura */
     height: 200px;               /* Altura menor para celular */
   }
+
+  
+}
+/* Ajuste universal para todas as logos */
+.servicos {
+  width: auto;           /* mantém a largura proporcional */
+  height: 40px;          /* altura fixa para padronizar */
+  max-width: 120px;      /* evita que fiquem muito largas */
+  object-fit: contain;   /* não distorce a logo */
+  background: transparent; /* remove fundo forçado */
+  display: block;
+}
+.servico-item img.servico-icone {
+  width: auto;
+  height: 40px;
+  max-width: 120px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto; /* centraliza a logo */
+}
+
+
+
+/* ================================== */
+/* Estilos para a lista de serviços   */
+/* ================================== */
+
+/* Grid que segura os itens */
+.servicos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Duas colunas de tamanho igual */
+  gap: 15px; /* Espaço entre os itens */
+  margin-top: 25px; /* Espaço acima da lista */
+}
+
+/* Cada item individual da lista */
+.servico-item {
+  display: flex;
+  align-items: center; /* Alinha o ícone e o texto verticalmente */
+  background: #222; /* Fundo um pouco mais claro */
+  padding: 8px;
+  border-radius: 6px;
+}
+
+/* Ícone do serviço */
+.servico-icone {
+  width: 24px;  /* Tamanho fixo */
+  height: 24px; /* Tamanho fixo */
+  margin-right: 10px; /* Espaço entre o ícone e o texto */
+}
+
+/* Texto do serviço */
+.servico-nome {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* Destaque para a palavra "Disponível" */
+.servico-nome span {
+  color: #ff4b4b; /* Cor vermelha para combinar com o site */
+  font-weight: bold;
+}
+
+/* Ajuste para telas pequenas */
+@media (max-width: 600px) {
+  .servicos-grid {
+    grid-template-columns: 1fr; /* Uma coluna só no celular */
+  }
+}
+
+/* Grid que segura os itens */
+.servicos-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Duas colunas de tamanho igual */
+  gap: 15px; /* Espaço entre os itens */
+  margin-top: 25px; /* Espaço acima da lista */
+}
+
+/* Cada item individual da lista */
+.servico-item {
+  display: flex;
+  align-items: center; /* Alinha o ícone e o texto verticalmente */
+  background: #222; /* Fundo um pouco mais claro */
+  padding: 8px;
+  border-radius: 6px;
+}
+
+/* Ícone do serviço */
+.servico-icone {
+  width: 24px;  /* Tamanho fixo */
+  height: 24px; /* Tamanho fixo */
+  margin-right: 10px; /* Espaço entre o ícone e o texto */
+}
+
+/* Texto do serviço */
+.servico-nome {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* Destaque para a palavra "Disponível" */
+.servico-nome span {
+  color: #ff4b4b; /* Cor vermelha para combinar com o site */
+  font-weight: bold;
+}
+
+/* Ajuste para telas pequenas */
+@media (max-width: 600px) {
+  .servicos-grid {
+    grid-template-columns: 1fr; /* Uma coluna só no celular */
+  }
 }

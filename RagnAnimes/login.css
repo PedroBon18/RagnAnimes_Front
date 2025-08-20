@@ -38,8 +38,8 @@ input {
   margin: 10px 0; /* Espaçamento acima e abaixo */
   border: none; /* Remove a borda padrão */
   border-radius: 6px; /* Bordas arredondadas */
-  background: #333; /* Fundo cinza escuro */
-  color: #fff; /* Texto branco */
+  background: rgba(217,217,213,255); /* Fundo cinza escuro */
+  color: #32252B; /* Texto escuro dentro do campo */
 }
 
 /* Botão principal */
