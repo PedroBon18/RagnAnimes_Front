@@ -161,11 +161,6 @@ header h1 {
   color: #ccc;
 }
 
-/* Destaque para a palavra "Disponível" */
-.servico-nome span {
-  color: #ff4b4b; /* Cor vermelha para combinar com o site */
-  font-weight: bold;
-}
 
 /* Ajuste para telas pequenas */
 @media (max-width: 600px) {
