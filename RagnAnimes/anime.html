@@ -55,30 +55,41 @@
       <p>O anime que você está procurando não existe ou foi removido.</p>
 
  
-  <script> //JavaScript
-    const animes =[
+    <script> // Início do bloco JavaScript
+
+    // Array principal que armazena todos os animes do site
+    const animes = [
       {
-        id: 1,// Identificador único do anime. Serve para diferenciar cada anime na lista.
-        nome: "Boku no Hero Academia (My Hero Academia)", // Nome que aparece no site
+        id: 1, // Identificador único do anime. Útil para diferenciar e buscar animes na lista.
+
+        nome: "Boku no Hero Academia (My Hero Academia)", 
+        // Nome que será exibido no site
+
         descricao: "Em um mundo onde quase todos possuem superpoderes conhecidos como 'Individualidades', Izuku Midoriya nasceu sem nenhum. Mesmo assim, seu maior sonho é se tornar um herói. Sua vida muda drasticamente quando ele encontra seu ídolo, All Might, que lhe concede a chance de realizar seu sonho ao herdar sua poderosa Individualidade.",
-        imagem: "/img/acao/MHA.jpg", // Caminho da capa usada no carrossel
+        // Breve descrição da história do anime para exibição em cards ou páginas de detalhes
+
+        imagem: "/img/acao/MHA.jpg", 
+        // Caminho da capa ou banner do anime. Pode ser usado em carrosséis, cards, etc.
+
         trailer: "https://www.youtube.com/embed/D5fYOnwYkj4?enablejsapi=1&wmode=opaque&autoplay=1",
+        // Link de incorporação do YouTube no formato "embed". 
+        // Será usado dentro de um <iframe> para exibir o trailer diretamente no site
+        // As query params como "autoplay=1" fazem o vídeo começar automaticamente
+        // "enablejsapi=1" permite controlar o player via JavaScript
+
+        // Lista de serviços onde o anime está disponível
         servicos: [
-        { "nome": "Crunchyroll", "icone": "/img/icones/crunchyroll.png", "link": "https://www.crunchyroll.com/pt-br/series/G6NQ5DWZ6/my-hero-academia" },
-        { "nome": "Netflix", "icone": "/img/icones/netflix.png", "link": "https://www.netflix.com/br/title/80135674" },
-        { "nome": "AnimeFire", "icone": "/img/icones/animefire.png", "link": "https://animefire.plus/animes/boku-no-hero-academia-todos-os-episodios" },
-        { "nome": "Amazon Prime Video", "icone": "/img/icones/primevideo.png", "link": "https://www.primevideo.com/-/pt/detail/0JNO1SKUQ47236DGO8DHX5E24B/ref=atv_ge_aga_1_c_JdoyER_brws_2_6?jic=8%7CEgRzdm9k" },
-        { "nome": "Hinata Soul", "icone": "/img/icones/hinatasoul.png", "link": "https://www.hinatasoul.chttps://www.hinatasoul.com/animes/f345c7572e5a12f99ab5a1f51761194fdaf6b98eom/" },
-        { "nome": "Animes Roll", "icone": "/img/icones/animesroll.png", "link": "https://www.anroll.net/a/SufLTqBgDP" },
-  
-      ]
-           // Cada anime possui um campo "trailer" que armazena o link de incorporação do YouTube.
-          // Esse link é usado para exibir o trailer diretamente no site via <iframe>.
-         // Assim, o código não baixa o vídeo, apenas "importa" o player do YouTube.
-        // URL do trailer no YouTube, no formato "embed"
-       // Esse link é usado para carregar o vídeo dentro de um <iframe> no site,
-      // permitindo que o player do YouTube rode diretamente na página.
-      
+          { "nome": "Crunchyroll", "icone": "/img/icones/crunchyroll.png", "link": "https://www.crunchyroll.com/pt-br/series/G6NQ5DWZ6/my-hero-academia" },
+          { "nome": "Netflix", "icone": "/img/icones/netflix.png", "link": "https://www.netflix.com/br/title/80135674" },
+          { "nome": "AnimeFire", "icone": "/img/icones/animefire.png", "link": "https://animefire.plus/animes/boku-no-hero-academia-todos-os-episodios" },
+          { "nome": "Amazon Prime Video", "icone": "/img/icones/primevideo.png", "link": "https://www.primevideo.com/-/pt/detail/0JNO1SKUQ47236DGO8DHX5E24B/ref=atv_ge_aga_1_c_JdoyER_brws_2_6?jic=8%7CEgRzdm9k" },
+          { "nome": "Hinata Soul", "icone": "/img/icones/hinatasoul.png", "link": "https://www.hinatasoul.com/animes/f345c7572e5a12f99ab5a1f51761194fdaf6b98e" }, 
+          { "nome": "Animes Roll", "icone": "/img/icones/animesroll.png", "link": "https://www.anroll.net/a/SufLTqBgDP" },
+        ]
+        // Cada objeto de serviço possui:
+        // "nome" → nome do serviço
+        // "icone" → caminho do ícone (pode ser usado em botões ou cards)
+        // "link" → URL direta para o anime
       },
       {
         id: 2,
