@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registrar Serviços - RagnAnimes</title>
-
   <link rel="shortcut icon" href="/img/favicon/favicon.png" type="image/x-icon">
   <link rel="stylesheet" href="RegistrarServicos.css">
 </head>
@@ -33,6 +32,9 @@
           <label for="url_servico_1">URL do Serviço:</label>
           <input type="url" id="url_servico_1" name="url_servico[]" placeholder="https://..." required>
 
+          <label for="imagem_1">URL da Imagem:</label>
+          <input type="text" id="imagem_1" name="imagem[]" placeholder="https://..." required>
+
           <button type="button" class="remover-servico">Remover</button>
         </div>
       </div>
@@ -52,7 +54,7 @@
   <script>
     let contador = 1;
 
-    // Adicionar novo serviço
+    // Função para adicionar novo serviço
     document.getElementById("add-servico").addEventListener("click", () => {
       contador++;
       const container = document.getElementById("servicos-container");
@@ -66,11 +68,14 @@
         <label for="url_servico_${contador}">URL do Serviço:</label>
         <input type="url" id="url_servico_${contador}" name="url_servico[]" placeholder="https://..." required>
 
+        <label for="imagem_${contador}">URL da Imagem:</label>
+        <input type="text" id="imagem_${contador}" name="imagem[]" placeholder="https://..." required>
+
         <button type="button" class="remover-servico">Remover</button>
       `;
       container.appendChild(novoServico);
 
-      // adiciona o evento de remover ao novo botão
+      // Evento para remover o serviço recém-adicionado
       novoServico.querySelector(".remover-servico").addEventListener("click", () => {
         novoServico.remove();
       });
