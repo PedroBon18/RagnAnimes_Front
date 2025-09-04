@@ -42,6 +42,8 @@ header h1 {
   padding: 0 20px;   /* Respiro nas laterais */
 }
 
+
+
 /* ================= Formulário ================= */
 form label {
   display: block;       /* Força cada label em linha própria */
@@ -68,6 +70,12 @@ button {
   cursor: pointer;
   font-size: 1rem;
   transition: background 0.3s ease;
+}
+/* Centraliza o botão "Adicionar Anime" */
+.form-actions {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  margin-top: 20px;        /* Espaço acima do botão */
 }
 button:hover {
   background: #ff4b4b;  /* Vermelho mais claro no hover */
