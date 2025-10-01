@@ -1,0 +1,60 @@
+🍜 RagnAnimes Front-end: Guia de Streaming de Animes
+
+Um projeto de front-end desenvolvido com o objetivo de funcionar como um guia de streaming de animes, similar ao JustWatch. A plataforma permite que os usuários busquem ou naveguem por animes e descubram rapidamente em qual serviço de streaming (como Crunchyroll, Netflix, ou outros) o título está disponível para assistir.
+
+O design foi construído com foco em organização, usabilidade e responsividade, garantindo uma ótima experiência em dispositivos móveis e desktops.
+
+---
+✨ Funcionalidades
+
+Guia de Streaming: Informa onde cada anime pode ser assistido, direcionando o usuário para a plataforma correta.
+
+Responsivo: Layout que se adapta perfeitamente a qualquer tamanho de tela (mobile, tablet e desktop), garantindo ótima visualização em todos os dispositivos.
+
+Detalhes do Anime: Exibe informações relevantes como sinopse e capa.
+
+Trailers do Anime: Permite que o usuário assista ao trailer do anime diretamente incorporado do YouTube.
+
+Interface Limpa: Navegação intuitiva construída exclusivamente com HTML, CSS e JavaScript puros.
+---
+
+💻 Tecnologias Utilizadas
+
+Este projeto foi construído apenas com as tecnologias fundamentais da web, garantindo leveza e performance.
+
+HTML5: Estrutura semântica do projeto.
+CSS3: Estilização responsiva e customizada.
+JavaScript (Puro): Lógica da aplicação e manipulação do DOM.
+
+---
+
+🚀 Como Executar
+
+Este projeto é um front-end estático. Siga os passos abaixo para visualizá-lo:
+
+1.  Clone o repositório:
+
+    git clone https://github.com/PedroBon18/RagnAnimes_Front.git (https://github.com/PedroBon18/RagnAnimes_Front.git)
+  
+2.  Acesse o diretório do projeto
+
+3.  Abra o arquivo:
+
+Se você usa o VS Code, utilize a extensão Live Server. Basta abrir o projeto no VS Code, clicar com o botão direito no arquivo index.html e selecionar "Open with Live Server". Isso garantirá que scripts JavaScript, se houver, funcionem corretamente.
+---
+
+🤝 Contribuidores
+
+Um agradecimento especial às pessoas que ajudaram a tornar este projeto possível:
+
+| Nome do Colaborador | Função/Contribuição | GitHub |
+| Pedro Bon | Desenvolvedor Principal (Lógica JS, Design, Responsividade) | [@PedroBon18] (https://github.com/PedroBon18) |
+| Vitor Calixto | Desenvolvedor Front-end (Design e Responsividade) | [@Vitor-Calixto] (https://github.com/Vitor-Calixto) |
+| Carolina Arca | Desenvolvedora Front-end (Ajuda com o CSS) | [@CarolinaArca] (https://github.com/CarolinaArca) |
+| Francisco Tonini | Revisor de Código (Correção de bugs e Suporte) | [@FranciscoTonini] (https://github.com/FranciscoTonini) |
+---
+📧 Contato
+
+Se você tiver alguma dúvida ou sugestão sobre o projeto, sinta-se à vontade para entrar em contato:
+
+Pedro Bon: pedrobondev18@gmail.com
